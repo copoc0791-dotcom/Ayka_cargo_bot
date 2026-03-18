@@ -38,7 +38,7 @@ async def set_language(callback: types.CallbackQuery):
     await callback.message.answer("Esasy menýu açyldy:", reply_markup=main_menu_tm())
     await callback.answer()
 
-# Rossiýa we Abhaziýa Nokatlary
+# Nokatlar (Abhaziýanyň simwoliki baýdagy bilen)
 @dp.message(F.text == "📍 Rossiýa we Abhaziýa nokatlary")
 async def branches(message: types.Message):
     text = (
@@ -49,32 +49,27 @@ async def branches(message: types.Message):
         "• Wladikawkaz: +7 918 705-93-97 (Akgurban)\n"
         "• Groznyý: +7 918 705-93-97 (Akgurban)\n"
         "• Esentüki: +7 919 758-46-50 (Güneş)\n"
-        "• Stawrapol: +7 963 285-49-79 (Babageldi)\n\n"
+        "• Stawrapol: +7 963 285-49-79 (Babageldi)\n"
+        "• Rostow, Soçi, Adler: (Operatora ýazyň)\n\n"
         "🟥✋⭐ **Abhaziýadaky nokatlar:**\n"
         "• Сухум: +7 967 778-33-40 (Ынам), +7 940 725-70-82 (Аннуш)\n"
         "• Гагра: +7 968 461-40-30 (Мерген)"
     )
     await message.answer(text)
 
-# Sargyt Etmek
 @dp.message(F.text == "🛍 Sargyt Etmek (Çat Gruppa)")
 async def join_group(message: types.Message):
     builder = InlineKeyboardBuilder()
     builder.add(types.InlineKeyboardButton(text="➡️ Çat Gruppa Geç", url=GROUP_LINK))
     await message.answer("Sargyt etmek üçin biziň ýörite çat gruppamyza goşulyň:", reply_markup=builder.as_markup())
 
-# Awtomatik Baha Hasaplaýjy
-@dp.message(F.photo | F.text.contains("http"))
-async def handle_pricing(message: types.Message):
-    await message.reply(
-        "✅ Sargyt maglumaty kabul edildi!\n\n"
-        "💰 **Hasaplanýan baha:** 150 TMT\n"
-        "Töleg üçin aşakdaky '💳 Töleg we Kartlar' düwmesine basyň."
-    )
+@dp.message(F.text == "💳 Töleg we Kartlar")
+async def payment_info(message: types.Message):
+    await message.answer("💳 **Töleg maglumatlary:**\n\n🇹🇲 Altyn Asyr: (Kart belgiňiz)\n🇷🇺 Sberbank: (Kart belgiňiz)")
 
 async def main():
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
     asyncio.run(main())
-                       
+    
