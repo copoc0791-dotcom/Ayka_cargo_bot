@@ -7,8 +7,8 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeybo
 API_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
 ADMIN_ID = '1251341050'
 
-bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
+API_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+API_TOKEN = "8629837946:AAEJA8V2toPX5-rJLUV5gQ6X9QcZ4Esbix4"
 
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
